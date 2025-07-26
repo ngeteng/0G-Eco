@@ -4,15 +4,10 @@ import CONFIG from './config.js';
 import 'dotenv/config';
 import { runMultiFaucet } from './faucet.js';
 import { performSwap } from './swap.js';
+import { addLiquidity } from './addLp.js';
 
 async function main() {
-    console.log("🤖 === BOT AUTO FAUCET & SWAP DIMULAI === 🤖");
-
-    // Validasi awal
-    if (!CONFIG.swap.routerAddress.startsWith('0x')) {
-        console.error("❌ HENTIKAN: Harap isi `SWAP_ROUTER_ADDRESS` di file config.js!");
-        return;
-    }
+    console.log("🤖 === BOT AUTO FAUCET, SWAP & ADD LP DIMULAI === 🤖");
 
     const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
     const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
@@ -22,11 +17,21 @@ async function main() {
     await runMultiFaucet(signer, CONFIG);
 
     // --- TAHAP 2: JALANKAN SEMUA SWAP ---
-    console.log("\n🚀 Memulai Modul Swap untuk semua pasangan...");
+    console.log("\n🚀 Memulai Modul Swap...");
     for (const pair of CONFIG.swap.pairs) {
         await performSwap(signer, pair, CONFIG);
-        // Jeda singkat antar swap
-        await new Promise(resolve => setTimeout(resolve, 5000)); 
+        await new Promise(resolve => setTimeout(resolve, 5000));
+    }
+
+    // --- TAHAP 3: TAMBAHKAN LIKUIDITAS ---
+    console.log("\n💧 Memulai Modul Penambahan Likuiditas...");
+    if (!CONFIG.liquidity.managerAddress.startsWith('0x')) {
+        console.error("❌ HENTIKAN: Harap isi `POSITION_MANAGER_ADDRESS` di config.js!");
+    } else {
+        for (const position of CONFIG.liquidity.positions) {
+            await addLiquidity(signer, position, CONFIG);
+            await new Promise(resolve => setTimeout(resolve, 5000));
+        }
     }
     
     console.log("\n🏁 === SEMUA TUGAS SELESAI === 🏁");
