@@ -1,4 +1,3 @@
-// main.js
 import { ethers } from 'ethers';
 import CONFIG from './config.js';
 import 'dotenv/config';
