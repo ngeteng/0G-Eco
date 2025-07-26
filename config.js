@@ -63,13 +63,13 @@ const CONFIG = {
         ],
         positions: [
             {
-                token0: "BTC", // Gunakan nama token dari tokenInfo
+                token0: "ETH", // Gunakan nama token dari tokenInfo
                 token1: "USDT",
                 fee: 3000,
                 tickLower: -887220,
                 tickUpper: 887220,
                 // Jumlah token yang ingin disetor (dalam string)
-                amount0Desired: "0.001", // 0.01 WETH
+                amount0Desired: "0.01", // 0.01 WETH
                 amount1Desired: "35",     // 35 USDT
                 amount0Min: "0", // Set 0 untuk sederhana
                 amount1Min: "0"  // Set 0 untuk sederhana
