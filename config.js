@@ -1,15 +1,25 @@
 // config.js
 
 const FAUCET_CONFIG = {
-    // Alamat smart contract faucet yang dituju
-    contractAddress: "0x...", // <-- GANTI DENGAN ALAMAT KONTRAK FAUCET
-
-    // ABI (Application Binary Interface) dari kontrak
-    // Karena kita tahu fungsinya adalah mint(), kita bisa definisikan seperti ini.
-    // Ini adalah ABI minimal yang dibutuhkan.
+    tokens: [
+        {
+            name: "BTC",
+            contractAddress: "ALAMAT_KONTRAK_FAUCET_BTC"
+        },
+        {
+            name: "ETH",
+            contractAddress: "ALAMAT_KONTRAK_FAUCET_ETH"
+        },
+        {
+            name: "USDT",
+            contractAddress: "ALAMAT_KONTRAK_FAUCET_USDT"
+        }
+    ],
     contractAbi: [
         "function mint()"
-    ]
+    ],
+    delayInSeconds: 10
 };
 
-module.exports = { FAUCET_CONFIG };
+// Ganti module.exports dengan export default
+export default FAUCET_CONFIG;
