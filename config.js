@@ -25,7 +25,7 @@ const CONFIG = {
         // Pasangan yang akan di-swap
         pairs: [
             {
-                from: "BTC",
+                from: "ETH",
                 to: "USDT",
                 amount: "0.01", // Swap 0.01 BTC
                 fee: 100 // Fee pool 0.01%
