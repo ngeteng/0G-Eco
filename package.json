@@ -1,0 +1,23 @@
+{
+  "name": "multi-faucet-bot",
+  "version": "1.0.0",
+  "description": "Bot untuk claim faucet dari beberapa kontrak secara otomatis.",
+  "main": "faucetBot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node faucetBot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blockchain",
+    "ethers",
+    "faucet",
+    "bot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1"
+  }
+}
